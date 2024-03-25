@@ -11,6 +11,7 @@ $dotenv->load();
 // Création instance de la classe Router
 $router = new Router();
 
+// Exemple de tableau $_GET cela permet d'afficher les controllers (Méthode plane() de PlaneController)
 $_GET = ['route' => 'plane'];
 
 // Appel de la méthode handleRequest avec £_GET en paramètres
