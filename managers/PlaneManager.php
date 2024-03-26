@@ -38,4 +38,25 @@ class PlaneManager extends AbstractManager
         }
         return null;
     }
+    
+    public function findByUse(int $useId): array
+    {
+        $query = $this->db->prepare('SELECT * FROM planes JOIN planes_uses ON planes_uses.plane_id = planes.id WHERE planes_uses.use_id = :uses_id');
+        $parameters = [
+            "uses_id" => $useId
+        ];
+        
+        $query->execute($parameters);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        $planes = [];
+    
+        foreach ($results as $item) {
+            $plane = new Plane($item["name"], $item["start_year"], $item["end_year"], $item["picture_url"]);
+            $plane->setId($item["id"]);
+            $planes[] = $plane;
+        }
+        return $planes;
+    }
 }
+
+ 

@@ -6,7 +6,7 @@ class UsesManager extends AbstractManager
     {
         $query = $this->db->prepare('SELECT * FROM uses');
         $query->execute();
-        $results = $query->fetchALL(PDO::FETCH_ASSOC).
+        $results = $query->fetchALL(PDO::FETCH_ASSOC);
         $uses = [];
         
         foreach($result as $item)
@@ -37,5 +37,23 @@ class UsesManager extends AbstractManager
             
         }
         return null;
+    }
+    
+    public function findByPlane(int $planeID): array
+    {
+        $query = $this->db->prepare('SELECT * FROM uses JOIN planes_uses ON planes_uses.use_id = uses.id WHERE planes_uses.plane_id = :plane_id');
+        $parameters = [
+            "plane_id" => $planeID
+        ];
+        $query->execute($parameters);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        $usesListe = [];
+    
+        foreach ($results as $item) {
+            $uses = new Uses($item["name"]);
+            $uses->setId($item["id"]);
+            $usesListe[] = $uses;
+        }
+        return $usesListe;
     }
 }
