@@ -77,15 +77,15 @@ class Plane
     /**
      * @return string
      */
-    public function getpicture_Url(): string
+    public function getpictureUrl(): string
     {
-        return $this->end_year;
+        return $this->picture_url;
     }
 
     /**
      * @param string $description
      */
-    public function setpicture_Url(string $picture_Url): void
+    public function setpictureUrl(string $picture_url): void
     {
         $this->picture_Url = $picture_Url;
     }

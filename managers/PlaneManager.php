@@ -6,14 +6,14 @@ class PlaneManager extends AbstractManager
     {
         $query = $this->db->prepare('SELECT * FROM planes');
         $query->execute();
-        $results = $query->fetchALL(PDO::FETCH_ASSOC).
+        $results = $query->fetchALL(PDO::FETCH_ASSOC);
         $planes = [];
         
-        foreach($result as $item)
+        foreach($results as $item)
         {
             $plane = new Plane($item["name"], $item["start_year"], $item["end_year"], $item["picture_url"]);
             $plane->setId($item["id"]);
-            $plane[] = $plane;
+            $planes[] = $plane;
         }
         return $planes;
     }

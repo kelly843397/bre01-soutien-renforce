@@ -19,11 +19,11 @@ class Router
             }
             elseif($get["route"] === "admin-plane")
             {
-                 $ad->admin_plane();
+                 $ad->adminplane();
             }
             elseif($get["route"] === "admin-use")
             {
-                 $ad->admin_usage();
+                 $ad->adminuses();
             }
         }
     }

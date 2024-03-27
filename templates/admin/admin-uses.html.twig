@@ -1,0 +1,55 @@
+{% extends "base-admin.html.twig" %}
+
+{% block body %}
+<main class=container>
+	<h1 class="mb-5">Titre de la page</h1>
+
+        <a href="" class="btn btn-primary">Ajouter <span class="bi bi-plus-circle-fill"></span></a>
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                 {% for usage in uses %}
+                <tr>
+                    <td>
+                        {{ usage.id }}
+                    </td>
+                    <td>
+                        {{ usage.name }}
+                    </td>
+                    
+                    <td>
+                        <a href="" class="btn btn-primary"><span class="bi bi-eye-fill"></span></a>
+                        <a href="" class="btn btn-success"><span class="bi bi-pencil-fill"></span></a>
+                        <a href="" class="btn btn-danger"><span class="bi bi-trash3-fill"></span></a>
+                    </td>
+                </tr>
+                {% endfor  %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+</main>
+{% endblock %}

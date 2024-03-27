@@ -7,15 +7,15 @@ class UsesManager extends AbstractManager
         $query = $this->db->prepare('SELECT * FROM uses');
         $query->execute();
         $results = $query->fetchALL(PDO::FETCH_ASSOC);
-        $uses = [];
+        $usesListes = [];
         
-        foreach($result as $item)
+        foreach($results as $item)
         {
             $uses = new Uses($item["name"]);
             $uses->setId($item["id"]);
-            $uses[] = $uses;
+            $usesListes[] = $uses;
         }
-        return $uses;
+        return $usesListes;
     }
     
     public function findOne(int $id) : ? Uses
