@@ -12,12 +12,12 @@ class PlaneController extends AbstractController
         /*$PlaneManager = new PlaneManager();
         $planes=$PlaneManager->findByUse(1);
         dump($planes);*/
+        $this->render("home.html.twig", []);
     }
     
     public function researchPlane() : void
     {
         echo "Méthode research_plane() de PlaneController";
     }
-    //
     
 }
