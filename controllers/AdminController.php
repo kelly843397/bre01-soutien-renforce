@@ -31,20 +31,34 @@ class AdminController extends AbstractController
     {
         echo "Méthode research_plane() de AdminController()";
     }
-    // ok
-    public function createPlane (): void
+    
+    public function createPlane(): void
     {
-        echo "Méthode createPlane de AdminController()";
+        //echo "Méthode createPlane de AdminController()";
+        $this->render("admin/create-plane.html.twig", []);
     }
+
     // ok
     public function checkCreatePlane (): void
     {
         echo "Méthode checkCreatePlane de AdminController()";
+        
+        if(isset($_POST["name"]) && isset($_POST["start_year"]) && isset($_POST["end_year"]) && isset($_POST["picture_url"]))
+        {
+            $champ1 = $_POST["name"];
+            $champ2 = $_POST["start_year"];
+            $champ3 = $_POST["end_year"];
+            $champ4 = $_POST["picture_url"];
+            $plane = new Plane($champ1, $champ2, $champ3, $champ4);
+            dump($plane);
+        }
     }
     // ok
     public function editPlane(): void
     {
-        echo "Méthode editPlane de AdminController()";
+        //echo "Méthode editPlane de AdminController()";
+        $this->render("admin/edit-plane.html.twig", []);
+        
     }
     //ok
     public function checkEditPlane(): void
@@ -54,7 +68,8 @@ class AdminController extends AbstractController
     // ok
     public function deletePlane(): void
     {
-        echo "Méthode deletePlane de AdminController()";
+       // echo "Méthode deletePlane de AdminController()";
+       $this->render("admin/delete-plane.html.twig", []);
     }
     //ok
     public function checkDeletePlane(): void
@@ -64,17 +79,26 @@ class AdminController extends AbstractController
     //ok
     public function createUses(): void
     {
-        echo "Méthode createUses de AdminController()";
+        // echo "Méthode createUses de AdminController()";
+        $this->render("admin/create-uses.html.twig", []);
     }
     // ok
     public function checkCreateUses(): void
     {
         echo "Méthode checkCreateUses de AdminController()";
+        
+        if(isset($_POST["name"]))
+        {
+            $champ1 = $_POST["name"];
+            $uses = new Uses($champ1);
+            dump($uses);
+        }
     }
     // ok
     public function editUses(): void
     {
-        echo "Méthode editeUses de AdminController()";
+        //echo "Méthode editeUses de AdminController()";
+        $this->render("admin/edit-uses.html.twig", []);
     }
     // ok
     public function checkEditUses(): void
@@ -84,7 +108,8 @@ class AdminController extends AbstractController
     // ok
     public function deleteUses(): void
     {
-        echo "Méthode deleteUses de AdminController()";
+        //echo "Méthode deleteUses de AdminController()";
+         $this->render("admin/delete-uses.html.twig", []);
     }
     //ok
     public function checkDeleteUses(): void
