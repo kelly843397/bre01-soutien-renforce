@@ -74,6 +74,16 @@ class PlaneManager extends AbstractManager
 
         return $plane;
     }
+    
+    public function delete(int $planeId): void
+    {
+        // Rqte sup
+        $query = $this->db->prepare('DELETE FROM planes WHERE id =:id');
+        $parameters = [
+            "id" => $planeId
+        ];
+        $query->execute($parameters);
+    }
 }
 
  

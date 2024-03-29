@@ -76,12 +76,24 @@ class AdminController extends AbstractController
         echo "Méthode checkEditPlane de AdminController()";
     }
     // ok
-    public function deletePlane(): void
+    public function deletePlane(int $planeId): void
     {
        // echo "Méthode deletePlane de AdminController()";
-       $this->render("admin/delete-plane.html.twig", []);
+       /*$this->render("admin/delete-plane.html.twig", []);
+       
+       // Instanciation de planeManager
+       $planeManager = new PlaneManager();
+       // appel de la méthode de sup de PlaneManager
+       $planeManager->delete($planeID);*/
+       
+
+        // Instanciation de PlaneManager
+        $planeManager = new PlaneManager();
+        // Appel de la méthode de suppression dans PlaneManager
+        $planeManager->delete($planeId);
+        
     }
-    //ok
+    
     public function checkDeletePlane(): void
     {
         echo "Méthode checkDeletePlane de AdminController()";
@@ -126,10 +138,15 @@ class AdminController extends AbstractController
         echo "Méthode checkEditUses de AdminController()";
     }
     // ok
-    public function deleteUses(): void
+    public function deleteUses(int $usesId): void
     {
         //echo "Méthode deleteUses de AdminController()";
-         $this->render("admin/delete-uses.html.twig", []);
+        /* $this->render("admin/delete-uses.html.twig", []);*/
+        
+        // Instanciation de usesManager
+        $usesManager = new UsesManager();
+       // appel de la méthode de sup de UsesManager
+       $usesManager->delete($usesId);
     }
     //ok
     public function checkDeleteUses(): void
@@ -138,3 +155,4 @@ class AdminController extends AbstractController
     }
     
 }
+

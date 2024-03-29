@@ -70,5 +70,16 @@ class UsesManager extends AbstractManager
 
         return $uses;
     }
+    
+     public function delete(int $usesId): void
+    {
+        // Rqte sup
+        $query = $this->db->prepare('DELETE FROM uses WHERE id =:id');
+        $parameters = [
+            "id" => $usesId
+        ];
+        $query->execute($parameters);
+    }
 }
 
+  
