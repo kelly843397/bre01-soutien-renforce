@@ -31,7 +31,7 @@ class PlaneManager extends AbstractManager
         
         if($result)
         {
-            $plane = new Plane($result["name"], $result["start_year"], $result["end_year"], $result["pictures_url"]);
+            $plane = new Plane($result["name"], $result["start_year"], $result["end_year"], $result["picture_url"]);
             $plane->setId($result["id"]);
             return $product;
             
@@ -56,6 +56,23 @@ class PlaneManager extends AbstractManager
             $planes[] = $plane;
         }
         return $planes;
+    }
+    
+    public function create(Plane $plane): Plane
+    {
+        $query = $this->db->prepare('INSERT INTO planes (id, name, start_year, end_year, picture_url) VALUES (NULL, :name, :start_year, :end_year, :picture_url)');
+        $parameters = [
+            "name" => $plane->getName(),
+            "start_year" => $plane->getStartYear(),
+            "end_year" => $plane->getEndYear(),
+            "picture_url" => $plane->getPictureUrl()
+        ];
+
+        $query->execute($parameters);
+
+        $plane->setId($this->db->lastInsertId());
+
+        return $plane;
     }
 }
 

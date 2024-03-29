@@ -56,4 +56,19 @@ class UsesManager extends AbstractManager
         }
         return $usesListe;
     }
+    
+    public function create(Uses $uses): Uses
+    {
+        $query = $this->db->prepare('INSERT INTO uses (id, name) VALUES (NULL, :name)');
+        $parameters = [
+            "name" => $uses->getName(),
+        ];
+
+        $query->execute($parameters);
+
+        $uses->setId($this->db->lastInsertId());
+
+        return $uses;
+    }
 }
+

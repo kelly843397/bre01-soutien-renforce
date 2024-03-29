@@ -36,6 +36,8 @@ class AdminController extends AbstractController
     {
         //echo "Méthode createPlane de AdminController()";
         $this->render("admin/create-plane.html.twig", []);
+        // vérification des données du formulaire
+       
     }
 
     // ok
@@ -43,14 +45,22 @@ class AdminController extends AbstractController
     {
         echo "Méthode checkCreatePlane de AdminController()";
         
-        if(isset($_POST["name"]) && isset($_POST["start_year"]) && isset($_POST["end_year"]) && isset($_POST["picture_url"]))
+         if(isset($_POST["name"]) && isset($_POST["start_year"]) & isset($_POST["end_year"]) & isset($_POST["picture_url"]))
         {
-            $champ1 = $_POST["name"];
-            $champ2 = $_POST["start_year"];
-            $champ3 = $_POST["end_year"];
-            $champ4 = $_POST["picture_url"];
-            $plane = new Plane($champ1, $champ2, $champ3, $champ4);
-            dump($plane);
+            // Récup des données du form
+            $name = $_POST["name"];
+            $start_year = $_POST["start_year"];
+            $end_year = $_POST["end_year"];
+            $picture_url = $_POST["picture_url"];
+            
+            // Instanciation de planeManager
+            $planeManager = new PlaneManager();
+            
+            // Instanciation de Plane avec les données du form
+            $plane = new Plane($name, $start_year, $end_year, $picture_url);
+            
+            // Appel de la méthode create de PlaneManger en lui passant l'instance de Plane
+            $createdPlane = $planeManager->create($plane);
         }
     }
     // ok
@@ -81,17 +91,27 @@ class AdminController extends AbstractController
     {
         // echo "Méthode createUses de AdminController()";
         $this->render("admin/create-uses.html.twig", []);
+        
     }
     // ok
     public function checkCreateUses(): void
     {
         echo "Méthode checkCreateUses de AdminController()";
         
+        // vérification des données du formulaire
         if(isset($_POST["name"]))
         {
-            $champ1 = $_POST["name"];
-            $uses = new Uses($champ1);
-            dump($uses);
+            // Récup des données du form
+            $name = $_POST["name"];
+            
+            // Instanciation de UsesManager
+            $usesManager = new UsesManager();
+            
+            // Instanciation de Uses avec les données du form
+            $uses = new Uses($name);
+            
+            // Appel de la méthode create de UsesManger en lui passant l'instance de Uses
+            $createdUses = $usesManager->create($uses);
         }
     }
     // ok
@@ -116,4 +136,5 @@ class AdminController extends AbstractController
     {
         echo "Méthode checkDeleteUses de AdminController()";
     }
+    
 }
